@@ -10,11 +10,11 @@ len=`echo ${subscriberList} | jq length`
 for i in `seq 0 $(expr ${len} - 1)`
 do
     subscriber=`echo $subscriberList | jq -r .[${i}]`
-    existe_port_mapping=`soracom port-mappings get --imsi $subscriber --profile nao | jq .`
+    existe_port_mapping=`soracom port-mappings get --imsi $subscriber --profile $SORACOM_CLI_PROFILE | jq .`
 
     len=`echo ${existe_port_mapping} | jq length`;
     if [ $len -eq 0 ]; then
-        new_port_mapping=`soracom port-mappings create --body '{"destination": {"imsi": "'$subscriber'", "port": 22}}' --profile nao | jq .`
+        new_port_mapping=`soracom port-mappings create --body '{"destination": {"imsi": "'$subscriber'", "port": 22}}' --profile $SORACOM_CLI_PROFILE | jq .`
         arr+=`echo $new_port_mapping | jq .`
         continue
     fi
