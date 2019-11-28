@@ -1,0 +1,8 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+  - name: pause
+    pause:
+      seconds: 5
+  - ping:
