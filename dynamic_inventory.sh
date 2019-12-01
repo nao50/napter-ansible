@@ -4,7 +4,7 @@ SORACOM_CLI_PROFILE="XXXXX"
 TARGET_TAG_KEY="XXXXX"
 TARGET_TAG_VALUE="XXXXX"
 
-subscriberList=`soracom subscribers list --profile $SORACOM_CLI_PROFILE | jq '[.[] | select(.tags?.'$TARGET_TAG_KEY'=="'$TARGET_TAG_VALUE'") | .imsi ']`
+subscriberList=`soracom subscribers list --fetch-all --profile $SORACOM_CLI_PROFILE | jq '[.[] | select(.tags?.'$TARGET_TAG_KEY'=="'$TARGET_TAG_VALUE'") | .imsi ']`
 
 len=`echo ${subscriberList} | jq length`
 for i in `seq 0 $(expr ${len} - 1)`

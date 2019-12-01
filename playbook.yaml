@@ -4,5 +4,5 @@
   tasks:
   - name: pause
     pause:
-      seconds: 5
+      seconds: 3
   - ping:

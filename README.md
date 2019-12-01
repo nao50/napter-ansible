@@ -3,7 +3,8 @@ soracom napter with ansible dynamic inventory example
 
 # prerequire
 ansible 
-soracom cli
+soracom cli  
+sshpass
 
 # configure
 You can set variables that are appropriate for your environment by editing `dynamic_inventory.sh`.
