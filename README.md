@@ -12,12 +12,15 @@ You can set variables that are appropriate for your environment by editing shell
 ## key login
 Use `dynamic_inventory_key.sh` to log in using SSH with key authentication.  
 
+### set variables
 Set the following variables...
 
 > **SORACOM_CLI_PROFILE** : Set your SORACOM CLI profile name  
 > **TARGET_TAG_KEY** : Set the `tag key` set in the SIM you want to set with napter  
 > **TARGET_TAG_VALUE** : Set the `tag value` set in the SIM you want to set with napter  
-> **TARGET_USERNAME** : Set the `username` for SSH login of the device set by napter
+
+### set subscriber tag (in soracom console)
+TBD
 
 ### usage
 ```bash
