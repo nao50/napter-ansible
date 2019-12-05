@@ -3,8 +3,10 @@
 SORACOM_CLI_PROFILE="XXXXX"
 TARGET_TAG_KEY="XXXXX"
 TARGET_TAG_VALUE="XXXXX"
+TARGET_USERNAME="XXXXX"
+TARGET_SSH_PASS="XXXXX"
 
-subscriberList=`soracom subscribers list --fetch-all --profile $SORACOM_CLI_PROFILE | jq '[.[] | select(.tags?.'$TARGET_TAG_KEY'=="'$TARGET_TAG_VALUE'") | .imsi ']`
+subscriberList=`soracom subscribers list --fetch-all --profile $SORACOM_CLI_PROFILE | jq '[.[] | select(.tags?."'$TARGET_TAG_KEY'"=="'$TARGET_TAG_VALUE'") | .imsi ']`
 
 len=`echo ${subscriberList} | jq length`
 for i in `seq 0 $(expr ${len} - 1)`
@@ -24,4 +26,4 @@ do
 done
 
 l=`echo $arr | jq -s -c flatten`
-echo $l | jq '. | map({ (.imsi) : { "hosts": [.ipAddress], "vars": {"ansible_port": .port, "ansible_user": "pi", "ansible_ssh_pass": "raspberry"}} })' | jq add
+echo $l | jq '. | map({ (.imsi) : { "hosts": [.ipAddress], "vars": {"ansible_port": .port, "ansible_user": "'$TARGET_USERNAME'", "ansible_ssh_pass": "'$TARGET_SSH_PASS'"}} })' | jq add
