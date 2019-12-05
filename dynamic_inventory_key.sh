@@ -1,12 +1,8 @@
 #!/bin/bash
 
-# SORACOM_CLI_PROFILE="XXXXX"
-# TARGET_TAG_KEY="XXXXX"
-# TARGET_TAG_VALUE="XXXXX"
-
-SORACOM_CLI_PROFILE="nao"
-TARGET_TAG_KEY="name"
-TARGET_TAG_VALUE="nao-device"
+SORACOM_CLI_PROFILE="XXXXX"
+TARGET_TAG_KEY="XXXXX"
+TARGET_TAG_VALUE="XXXXX"
 
 subscriberList=`soracom subscribers list --fetch-all --profile "$SORACOM_CLI_PROFILE" | jq '[.[] | select(.tags?."'$TARGET_TAG_KEY'"=="'$TARGET_TAG_VALUE'") | { imsi: .imsi, tags: .tags? } ']`
 
